@@ -36,3 +36,5 @@
 ./cmake-build-release-visual-studio
 ./cmake-build-debug-wsl
 ./cmake-build-release-wsl
+
+/.idea
