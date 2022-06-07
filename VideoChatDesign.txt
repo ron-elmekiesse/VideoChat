@@ -1,0 +1,83 @@
+Client:
+
+using Buffer = std::vector<uint8_t>;
+
+Class AutoCloseSocket;
+
+Class Socket
+{
+    Socket(AutoCloseSocket& socket)
+
+    size_t recv_data(Buffer& buffer)
+    {
+        if (-1 == recv(socket.get(), buffer.data(), buffer.size(), ...))
+        {
+            throw VideoChatException(VideoChatStatus::SOCKET_RECV_FAILED, errno)
+        }
+    }
+
+    size_t send_data(Buffer& buffer)
+    {
+        send(socket.get(), ...)
+    }
+}
+
+listener()
+{
+    while (True)
+    {
+        buf = recv(socket)
+
+        std::cout << buf
+    }
+}
+
+class client_handler
+{
+    wait_for_input()
+    {
+    //
+        Iinput.get_input()
+    //
+        std::getline(std::cin, input)
+    }
+
+    send_input()
+    {
+        socket.send_data(Iinput.get())
+    }
+
+private:
+    Iinput input;
+    //Buffer input;
+    Socket socket;
+}
+
+class Iinput
+{
+    virtual get_input() = 0;
+}
+
+class text_input : Iinput
+{
+
+}
+
+class image_input : Iinput
+{
+
+}
+
+sender()
+{
+    while (True)
+    {
+        buf << std::cin
+
+        send(buf)
+    }
+}
+
+/////////////////////////
+
+Server:
