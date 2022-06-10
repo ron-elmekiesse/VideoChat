@@ -69,3 +69,47 @@ int main(int argc, char const *argv[]) {
     shutdown(server_fd, SHUT_RDWR);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class AutoCloseSocket{
+public:
+    AutoCloseSocket(Socket socket): s(socket){}
+    ~AutoCloseSocket(){
+        CloseSocket(s);
+    }
+    getSocket(){
+        return s;
+    }
+private:
+    Socket s;
+};
+
+class Foo{
+public:
+    Foo(int b) : a(b)
+    {}
+
+    ~Foo(){
+        closefile()
+    }
+private:
+    int a;
+};
