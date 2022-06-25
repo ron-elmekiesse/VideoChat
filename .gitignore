@@ -38,3 +38,4 @@
 ./cmake-build-release-wsl
 
 /.idea
+*.vs*
