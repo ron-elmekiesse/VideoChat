@@ -37,5 +37,5 @@
 ./cmake-build-debug-wsl
 ./cmake-build-release-wsl
 
-/.idea
+*/.idea*
 *.vs*
