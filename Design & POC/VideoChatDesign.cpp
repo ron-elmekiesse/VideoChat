@@ -27,8 +27,6 @@ private:
     AutoCloseSocket& socket;
 }
 
-
-
 class IInput
 {
 public:
@@ -65,8 +63,7 @@ public:
 
 struct PacketFormat
 {
-    uint32_t meeting_id;
-    std::unique_ptr<uint8_t> content;
+    // Is this struct necessary?
 }
 
 class PacketCreator
@@ -75,17 +72,30 @@ class PacketCreator
 
     void create(Buffer& packet_content)
     {
-        m_created_packet.meeting_id = meeting_id;
-        m_created_packet.content = packet_content.data();
+        // Create the packet with the meta data at the start
     }
 
-    PacketFormat& get()
+    add_meeting_id(Buffer& buffer)
     {
-        return m_created_packet;
+        /*
+        vec.insert(vec.begin(), (i >> 24) & 0xFF);
+        vec.insert(vec.begin(), (i >> 16) & 0xFF);
+        vec.insert(vec.begin(), (i >> 8) & 0xFF);
+        vec.insert(vec.begin(), (i) & 0xFF);
+        */
+    }
+
+    & get()
+    {
+        return ;
     }
 
     m_meeting_id;
-    PacketFormat m_created_packet;
+}
+
+class PacketParser
+{
+    // TODO
 }
 
 struct ThreadData
@@ -102,7 +112,7 @@ main()
     get_meeting_id()
 
     AutoCloseSocket auto_close_socket(SERVER_IP, SERVER_PORT)
-
+    // Make this section look better.
     Socket socket(auto_close_socket)
 
     socket.send_data(meeting_id)
@@ -126,10 +136,12 @@ listener(ThreadData thread_data)
         const Socket& socket = thread_data.socket;
         IOutput out;
         Buffer buf;
-        
+
         while (true)
         {
             num_bytes = socket.recv_data(buf)
+
+            call PacketParser
 
             out.show_output(buf);
         }
@@ -155,9 +167,9 @@ sender(ThreadData thread_data)
             //get input (maybe threads for av)
             input.get_input()
 
-            input.get_data()
+            packet_creator.create(input.get_data())
 
-            socket.send_data(input.get_data())
+            socket.send_data(packet_creator.get())
         }
     }
     catch (...)
