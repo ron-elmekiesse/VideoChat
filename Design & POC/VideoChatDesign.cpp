@@ -51,6 +51,11 @@ class TextInput : IInput
     }
 }
 
+class ImageInput : IInput
+{
+    void take_input(){...}
+}
+
 class IOutput
 {
 public:
@@ -58,36 +63,105 @@ public:
 
 }
 
-class ImageInput : IInput
+struct PacketFormat
 {
-    void take_input(){...}
+    uint32_t meeting_id;
+    std::unique_ptr<uint8_t> content;
 }
-//////////
-thread1:
-listener(socket)
-{
-    // try except
-    IOutput out;
-    Buffer buf;
-    while (true)
-    {
-        num_bytes = socket.recv_data(buf)
 
-        out.show_output(buf);
+class PacketCreator
+{
+    PacketCreator(uint32_t meeting_id);
+
+    void create(Buffer& packet_content)
+    {
+        m_created_packet.meeting_id = meeting_id;
+        m_created_packet.content = packet_content.data();
     }
+
+    PacketFormat& get()
+    {
+        return m_created_packet;
+    }
+
+    m_meeting_id;
+    PacketFormat m_created_packet;
 }
-///////
-thread2:
-sender()
+
+struct ThreadData
+{
+    const Socket& socket;
+    uint32_t meeting_id;
+}
+
+//////////
+
+client main:
+main()
+{
+    get_meeting_id()
+
+    AutoCloseSocket auto_close_socket(SERVER_IP, SERVER_PORT)
+
+    Socket socket(auto_close_socket)
+
+    socket.send_data(meeting_id)
+
+    listener_thread = std::thread(listener, {socket, meeting_id})
+    sender_thread = std::thread(sender, {socket, meeting_id})
+
+    listener_thread.start()
+    sender_thread.start()
+
+    // wait until the threads are dead / infinitly.
+}
+
+/////
+client thread1:
+listener(ThreadData thread_data)
 {
     // try except
-    IInput input;
-    while (true)
+    try 
     {
-        //get input (maybe threads for av)
-        input.get_input()
-        socket.send_data(input.get_data())
+        const Socket& socket = thread_data.socket;
+        IOutput out;
+        Buffer buf;
+        
+        while (true)
+        {
+            num_bytes = socket.recv_data(buf)
+
+            out.show_output(buf);
+        }
     }
+    catch (...)
+    {}
+}
+
+///////
+
+client thread2:
+sender(ThreadData thread_data)
+{
+    // try except
+    try
+    {
+        PacketCreator packet_creator(thread_data.meeting_id);
+        const Socket& socket = thread_data.socket;
+        IInput input;
+
+        while (true)
+        {
+            //get input (maybe threads for av)
+            input.get_input()
+
+            input.get_data()
+
+            socket.send_data(input.get_data())
+        }
+    }
+    catch (...)
+    {}
 }
 
 /////////////////////////
@@ -106,7 +180,7 @@ class Server
 {
 public:
     Server(port) :
-            m_server_socket(_s_init_socket)
+            m_server_socket(_s_init_socket())
     {}
 
     ~Server(){}
@@ -115,6 +189,7 @@ public:
     {
 
     }
+    
 private:
     static Socket _s_init_socket(){
         Socket s = bind;
@@ -123,6 +198,7 @@ private:
     }
     AutoCloseSocket m_server_socket;
 }
+
 /*
  * Notes:
  * Each meeting will have its own thread.
