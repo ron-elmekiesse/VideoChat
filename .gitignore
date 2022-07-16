@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# cmake out files
+./cmake-build-debug-visual-studio
+./cmake-build-release-visual-studio
+./cmake-build-debug-wsl
+./cmake-build-release-wsl
+
+*/.idea*
+*.vs*
