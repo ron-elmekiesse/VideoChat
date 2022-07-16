@@ -2,6 +2,8 @@ Client:
 
 using Buffer = std::vector<uint8_t>;
 
+class AutoInitWinSock;
+
 class AutoCloseSocket;
 
 class Socket
