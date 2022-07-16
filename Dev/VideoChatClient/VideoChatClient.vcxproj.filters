@@ -13,5 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="AutoCloseSocket">
+      <UniqueIdentifier>{8310d5c3-c16e-414f-84b7-ab04e883ce1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoCloseSocket\AutoCloseSocket.cpp">
+      <Filter>AutoCloseSocket</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp">
+      <Filter>AutoCloseSocket</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
