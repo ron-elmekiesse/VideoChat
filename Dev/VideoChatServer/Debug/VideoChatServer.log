@@ -1,0 +1,13 @@
+﻿  Main.cpp
+Main.obj : error LNK2019: unresolved external symbol "public: __thiscall cv::Mat::Mat(void)" (??0Mat@cv@@QAE@XZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: bool __thiscall cv::Mat::empty(void)const " (?empty@Mat@cv@@QBE_NXZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: __thiscall cv::VideoCapture::VideoCapture(void)" (??0VideoCapture@cv@@QAE@XZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall cv::VideoCapture::~VideoCapture(void)" (??1VideoCapture@cv@@UAE@XZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::open(int,int)" (?open@VideoCapture@cv@@UAE_NHH@Z) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::isOpened(void)const " (?isOpened@VideoCapture@cv@@UBE_NXZ) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::read(class cv::debug_build_guard::_OutputArray const &)" (?read@VideoCapture@cv@@UAE_NABV_OutputArray@debug_build_guard@2@@Z) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "int __cdecl cv::waitKey(int)" (?waitKey@cv@@YAHH@Z) referenced in function _main
+Main.obj : error LNK2019: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::debug_build_guard::_InputArray const &)" (?imshow@cv@@YAXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV_InputArray@debug_build_guard@1@@Z) referenced in function _main
+C:\OpenCV\build\x64\vc15\lib\opencv_world454.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Projects\VideoChat\VideoChat\Debug\VideoChat.exe : fatal error LNK1120: 10 unresolved externals
