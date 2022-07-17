@@ -1,8 +1,10 @@
 #pragma once
+
 #include <ostream>
 
 enum class VideoChatClientStatus
 {
+	VIDEO_CHAT_CLIENT_SUCCESS = 0,
 	AUTO_CLOSE_SOCKET_SOCKET_FAILED,
 };
 
