@@ -1,6 +1,12 @@
-﻿  Socket.cpp
+﻿  AutoCloseSocket.cpp
+  AutoInitWinSock.cpp
+  Main.cpp
+  Socket.cpp
+  Generating Code...
 AutoInitWinSock.obj : error LNK2005: "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,enum VideoChatClientStatus const &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEBW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
-AutoInitWinSock.obj : error LNK2005: "char const * __cdecl to_string(enum VideoChatClientStatus const &)" (?to_string@@YAPEBDAEBW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
+AutoInitWinSock.obj : error LNK2005: "char const * __cdecl to_string(enum VideoChatClientStatus)" (?to_string@@YAPEBDW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
+Main.obj : error LNK2005: "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,enum VideoChatClientStatus const &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEBW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
+Main.obj : error LNK2005: "char const * __cdecl to_string(enum VideoChatClientStatus)" (?to_string@@YAPEBDW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
 Socket.obj : error LNK2005: "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,enum VideoChatClientStatus const &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEBW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
-Socket.obj : error LNK2005: "char const * __cdecl to_string(enum VideoChatClientStatus const &)" (?to_string@@YAPEBDAEBW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
+Socket.obj : error LNK2005: "char const * __cdecl to_string(enum VideoChatClientStatus)" (?to_string@@YAPEBDW4VideoChatClientStatus@@@Z) already defined in AutoCloseSocket.obj
 C:\Projects\C++\VideoChat\Dev\x64\Debug\VideoChatClient.exe : fatal error LNK1169: one or more multiply defined symbols found
