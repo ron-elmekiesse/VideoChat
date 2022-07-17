@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Projects\VideoChat\Development\Dev\x64\Debug\VideoChatClient.exe</FullPath>
+      <FullPath>C:\Projects\C++\VideoChat\Dev\x64\Debug\VideoChatClient.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
