@@ -19,6 +19,9 @@
     <Filter Include="VideoChatClientException">
       <UniqueIdentifier>{d89f7709-dfab-49e5-b459-ce9be291f9eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AutoInitWinSock">
+      <UniqueIdentifier>{ba1f7d4b-fc7b-41eb-917d-97f510dbb0e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="AutoCloseSocket\AutoCloseSocket.cpp">
       <Filter>AutoCloseSocket</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoInitWinSock\AutoInitWinSock.cpp">
+      <Filter>AutoInitWinSock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp">
       <Filter>VideoChatClientException</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp">
+      <Filter>AutoInitWinSock</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

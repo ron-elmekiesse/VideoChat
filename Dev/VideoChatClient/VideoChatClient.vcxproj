@@ -144,10 +144,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AutoCloseSocket\AutoCloseSocket.cpp" />
+    <ClCompile Include="AutoInitWinSock\AutoInitWinSock.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
+    <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp" />
   </ItemGroup>
