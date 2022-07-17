@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <WinSock2.h>
 
+#include "../VideoChatClientException/VideoChatClientException.hpp"
+
 class AutoCloseSocket
 {
 public:

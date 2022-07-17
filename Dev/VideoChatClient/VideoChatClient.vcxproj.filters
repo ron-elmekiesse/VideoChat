@@ -16,6 +16,9 @@
     <Filter Include="AutoCloseSocket">
       <UniqueIdentifier>{8310d5c3-c16e-414f-84b7-ab04e883ce1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="VideoChatClientException">
+      <UniqueIdentifier>{d89f7709-dfab-49e5-b459-ce9be291f9eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -28,6 +31,12 @@
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp">
       <Filter>AutoCloseSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp">
+      <Filter>VideoChatClientException</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp">
+      <Filter>VideoChatClientException</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
