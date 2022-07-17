@@ -5,6 +5,9 @@ enum class VideoChatClientStatus
 {
 	AUTO_CLOSE_SOCKET_SOCKET_FAILED,
 	AUTO_INIT_WINSOCK_WSA_STARTUP_FAILED,
+	SOCKET_SENDING_DATA_FAILED,
+	SOCKET_CONNECTING_SOCKET_FAILED,
+	SOCKET_RECV_FAILED,
 };
 
 const char* to_string(const VideoChatClientStatus& e)
