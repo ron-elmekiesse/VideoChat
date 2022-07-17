@@ -2,12 +2,12 @@
 
 AutoInitWinSock::AutoInitWinSock()
 {
-	WSADATA wsaData{};
-	if (0 == WSAStartup(MAKEWORD(2, 2), &wsaData))
+	WSADATA wsa_data{};
+	if (0 == WSAStartup(MAKEWORD(2, 2), &wsa_data))
 	{
 		throw VideoChatClientException(VideoChatClientStatus::AUTO_INIT_WINSOCK_WSA_STARTUP_FAILED, GetLastError());
 	}
-	if (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2)
+	if (LOBYTE(wsa_data.wVersion) != 2 || HIBYTE(wsa_data.wVersion) != 2)
 	{
 		throw VideoChatClientException(VideoChatClientStatus::AUTO_INIT_WINSOCK_WSA_STARTUP_FAILED, GetLastError());
 	}
@@ -17,7 +17,7 @@ AutoInitWinSock::~AutoInitWinSock()
 {
 	try
 	{
-		WSACleanup();
+		(void)WSACleanup();
 	}
 	catch (...)
 	{

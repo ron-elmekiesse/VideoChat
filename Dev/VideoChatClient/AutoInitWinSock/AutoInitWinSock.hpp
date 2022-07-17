@@ -2,7 +2,7 @@
 
 #include <WinSock2.h>
 
-#include "../VideoChatClientException/VideoChatClientException.hpp"
+#include "VideoChatClientException/VideoChatClientException.hpp"
 
 class AutoInitWinSock
 {

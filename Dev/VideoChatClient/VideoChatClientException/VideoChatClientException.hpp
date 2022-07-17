@@ -1,7 +1,9 @@
 #pragma once
+
 #include <cstdint>
 #include <ostream>
 #include <exception>
+
 #include "VideoChatClientStatus.hpp"
 
 class VideoChatClientException : public std::exception
@@ -14,12 +16,11 @@ class VideoChatClientException : public std::exception
 	}
 
 public:
-	VideoChatClientException(VideoChatClientStatus status, uint32_t last_error) :
-		std::exception(), m_status(status), m_last_error(last_error)
+	VideoChatClientException(VideoChatClientStatus status, uint32_t last_error = 0) :
+		m_status(status),
+		m_last_error(last_error)
 	{
 	}
-
-	~VideoChatClientException() override = default;
 
 	VideoChatClientException(const VideoChatClientException& video_chat_client_exception) = default;
 	VideoChatClientException(VideoChatClientException&& video_chat_client_exception) noexcept = default;
