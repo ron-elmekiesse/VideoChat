@@ -12,7 +12,7 @@ enum class VideoChatClientStatus
 	SOCKET_RECV_FAILED,
 };
 
-const char* to_string(VideoChatClientStatus e)
+inline const char* to_string(VideoChatClientStatus e)
 {
 	switch (e)
 	{
@@ -27,7 +27,7 @@ const char* to_string(VideoChatClientStatus e)
 }
 
 
-std::ostream& operator<<(std::ostream& os, const VideoChatClientStatus& status)
+inline std::ostream& operator<<(std::ostream& os, const VideoChatClientStatus& status)
 {
 	return os << to_string(status);
 }

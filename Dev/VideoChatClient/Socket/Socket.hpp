@@ -4,7 +4,7 @@
 
 #include <vector>
 #include <WinSock2.h>
-#include <ws2tcpip.h>
+#include <Ws2tcpip.h>
 
 #include "VideoChatClientException/VideoChatClientException.hpp"
 #include "AutoCloseSocket/AutoCloseSocket.hpp"
@@ -15,6 +15,7 @@ typedef std::vector<uint8_t> Buffer;
 class Socket
 {
 	friend Socket& operator<<(Socket& socket, const Buffer& buffer);
+	friend Socket& operator<<(Socket& socket, const std::string& str);
 	friend Socket& operator>>(Socket& socket, Buffer& buffer);
 	static constexpr uint32_t MAX_PACKET_SIZE = 4194304; // 4MB
 

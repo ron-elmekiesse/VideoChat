@@ -30,32 +30,22 @@ Socket& operator<<(Socket& socket, const Buffer& buffer)
 	return socket;
 }
 
+Socket& operator<<(Socket& socket, const std::string& str)
+{
+	return socket << Buffer(str.begin(), str.end());
+}
+
 Socket& operator>>(Socket& socket, Buffer& buffer)
 {
 	// Receive data:
-	uint32_t bytes_read = 0;
-	uint32_t total_bytes_read = 0;
-
 	buffer.resize(Socket::MAX_PACKET_SIZE);
 
-	do
-	{
-		bytes_read = socket._recv_once(buffer, total_bytes_read);
-		total_bytes_read += bytes_read;
-	}
-	while (bytes_read > 0);
+	int32_t bytes_read = recv(socket.m_socket.get(), reinterpret_cast<char*>(buffer.data()),
+	                          static_cast<int>(buffer.size()), 0);
 
-	buffer.resize(total_bytes_read);
-	return socket;
-}
-
-uint32_t Socket::_recv_once(Buffer& buffer, uint32_t pos) const
-{
-	int32_t bytes_read = 0;
-	bytes_read = recv(m_socket.get(), reinterpret_cast<char*>(buffer.data() + pos),
-	                  static_cast<int>(buffer.size()), 0);
 	if (bytes_read < 0)
 		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
 
-	return bytes_read;
+	buffer.resize(bytes_read);
+	return socket;
 }
