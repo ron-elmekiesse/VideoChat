@@ -148,11 +148,16 @@
     <ClCompile Include="AutoCloseSocket\AutoCloseSocket.cpp" />
     <ClCompile Include="AutoInitWinSock\AutoInitWinSock.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Output\ImageOutput.cpp" />
+    <ClCompile Include="Output\TextOutput.cpp" />
     <ClCompile Include="Socket\Socket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
     <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp" />
+    <ClInclude Include="Output\ImageOutput.hpp" />
+    <ClInclude Include="Output\IOutput.hpp" />
+    <ClInclude Include="Output\TextOutput.hpp" />
     <ClInclude Include="Socket\Socket.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp" />
