@@ -2,13 +2,13 @@
 
 
 #include "AutoInitWinSock/AutoInitWinSock.hpp"
+#include "Input/ImageInput.hpp"
 #include "Socket/Socket.hpp"
-
-
-#include "opencv2/opencv.hpp"
 
 int wmain()
 {
+	ImageInput im{};
+	im.take_input();
 	try
 	{
 		AutoInitWinSock auto_init_win_sock{};

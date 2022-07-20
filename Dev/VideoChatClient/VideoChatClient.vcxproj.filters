@@ -25,6 +25,9 @@
     <Filter Include="Socket">
       <UniqueIdentifier>{781a4f8f-02bc-49cc-88d3-19d378c5e403}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{16ac5151-ec9b-4a87-85b4-5af73da6a840}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -38,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="Socket\Socket.cpp">
       <Filter>Socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\ImageInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\TextInput.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +64,15 @@
     </ClInclude>
     <ClInclude Include="Socket\Socket.hpp">
       <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\IInput.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\ImageInput.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\TextInput.hpp">
+      <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
