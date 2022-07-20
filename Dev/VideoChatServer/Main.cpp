@@ -1,13 +1,8 @@
 #include <iostream>
 
-#include "opencv2/opencv.hpp"
-
 int main()
 {
 	std::cout << "Hello" << std::endl;
-
-	cv::Mat frame;
-
 
 	return 0;
 }

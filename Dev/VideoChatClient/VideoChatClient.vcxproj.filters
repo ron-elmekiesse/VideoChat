@@ -22,6 +22,9 @@
     <Filter Include="AutoInitWinSock">
       <UniqueIdentifier>{ba1f7d4b-fc7b-41eb-917d-97f510dbb0e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Socket">
+      <UniqueIdentifier>{781a4f8f-02bc-49cc-88d3-19d378c5e403}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="AutoInitWinSock\AutoInitWinSock.cpp">
       <Filter>AutoInitWinSock</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket\Socket.cpp">
+      <Filter>Socket</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp">
       <Filter>AutoInitWinSock</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket\Socket.hpp">
+      <Filter>Socket</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,3 +39,5 @@
 
 */.idea*
 *.vs*
+
+/Dev/ThirdParty/OpenCV/opencv2

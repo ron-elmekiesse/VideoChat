@@ -12,7 +12,7 @@ class VideoChatClientException : public std::exception
 	{
 		return os
 			<< "VideoChatClientException{status: " << obj.m_status
-			<< " error: " << obj.m_last_error << "}";
+			<< ", error: " << obj.m_last_error << "}";
 	}
 
 public:
