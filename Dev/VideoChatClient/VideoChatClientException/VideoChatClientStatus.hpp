@@ -22,7 +22,7 @@ inline const char* to_string(VideoChatClientStatus e)
 	case VideoChatClientStatus::SOCKET_SEND_FAILED: return "SOCKET_SEND_FAILED";
 	case VideoChatClientStatus::SOCKET_CONNECT_SOCKET_FAILED: return "SOCKET_CONNECT_SOCKET_FAILED";
 	case VideoChatClientStatus::SOCKET_RECV_FAILED: return "SOCKET_RECV_FAILED";
-	default: return "unknown";
+  default: return "unknown";
 	}
 }
 
