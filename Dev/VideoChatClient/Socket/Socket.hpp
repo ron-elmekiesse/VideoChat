@@ -28,7 +28,4 @@ private:
 
 private:
 	const AutoCloseSocket& m_socket;
-	const uint16_t m_sin_family;
-	const std::string& m_ip;
-	const uint16_t m_port;
 };

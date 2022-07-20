@@ -1,16 +1,13 @@
 #include "Socket.hpp"
 
 Socket::Socket(const AutoCloseSocket& socket, const uint16_t sin_family, const std::string& ip, const uint16_t port) :
-	m_socket(socket),
-	m_sin_family(sin_family),
-	m_ip(ip),
-	m_port(port)
+	m_socket(socket)
 {
 	// Connect to server:
 	sockaddr_in client_service{};
-	client_service.sin_family = m_sin_family;
-	inet_pton(m_sin_family, m_ip.c_str(), &client_service.sin_addr.s_addr);
-	client_service.sin_port = htons(m_port);
+	client_service.sin_family = sin_family;
+	inet_pton(sin_family, ip.c_str(), &client_service.sin_addr.s_addr);
+	client_service.sin_port = htons(port);
 
 	if (SOCKET_ERROR == connect(m_socket.get(), reinterpret_cast<SOCKADDR*>(&client_service), sizeof(client_service)))
 	{
