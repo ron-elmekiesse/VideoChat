@@ -25,11 +25,16 @@
     <Filter Include="Socket">
       <UniqueIdentifier>{781a4f8f-02bc-49cc-88d3-19d378c5e403}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Output">
+      <UniqueIdentifier>{14f9fe7a-fca4-4146-92a4-8f1844d0d6b1}</UniqueIdentifier>
+=======
     <Filter Include="Input">
       <UniqueIdentifier>{16ac5151-ec9b-4a87-85b4-5af73da6a840}</UniqueIdentifier>
     </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{7f8e4fd8-8977-467f-a55f-9dfa4f74bcba}</UniqueIdentifier>
+>>>>>>> main
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,11 +50,19 @@
     <ClCompile Include="Socket\Socket.cpp">
       <Filter>Socket</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Output\ImageOutput.cpp">
+      <Filter>Output</Filter>
+    </ClCompile>
+    <ClCompile Include="Output\TextOutput.cpp">
+      <Filter>Output</Filter>
+=======
     <ClCompile Include="Input\ImageInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="Input\TextInput.cpp">
       <Filter>Input</Filter>
+>>>>>>> main
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +81,16 @@
     <ClInclude Include="Socket\Socket.hpp">
       <Filter>Socket</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Output\ImageOutput.hpp">
+      <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\IOutput.hpp">
+      <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\TextOutput.hpp">
+      <Filter>Output</Filter>
+=======
     <ClInclude Include="Input\IInput.hpp">
       <Filter>Input</Filter>
     </ClInclude>
@@ -79,6 +102,7 @@
     </ClInclude>
     <ClInclude Include="Common\Common.hpp">
       <Filter>Common</Filter>
+>>>>>>> main
     </ClInclude>
   </ItemGroup>
 </Project>

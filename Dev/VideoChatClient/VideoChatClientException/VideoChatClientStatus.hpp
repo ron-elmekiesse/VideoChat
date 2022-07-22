@@ -10,8 +10,12 @@ enum class VideoChatClientStatus
 	SOCKET_SEND_FAILED,
 	SOCKET_CONNECT_SOCKET_FAILED,
 	SOCKET_RECV_FAILED,
+<<<<<<< HEAD
+	IMAGE_OUTPUT_CORRUPTED_IMAGE,
+=======
 	IMAGE_INPUT_OPEN_CAPTURE_FAILED,
 	IMAGE_INPUT_READ_FRAME_FAILED,
+>>>>>>> main
 };
 
 inline const char* to_string(VideoChatClientStatus e)
@@ -24,8 +28,12 @@ inline const char* to_string(VideoChatClientStatus e)
 	case VideoChatClientStatus::SOCKET_SEND_FAILED: return "SOCKET_SEND_FAILED";
 	case VideoChatClientStatus::SOCKET_CONNECT_SOCKET_FAILED: return "SOCKET_CONNECT_SOCKET_FAILED";
 	case VideoChatClientStatus::SOCKET_RECV_FAILED: return "SOCKET_RECV_FAILED";
+<<<<<<< HEAD
+	case VideoChatClientStatus::IMAGE_OUTPUT_CORRUPTED_IMAGE: return "IMAGE_OUTPUT_CORRUPTED_IMAGE";
+=======
 	case VideoChatClientStatus::IMAGE_INPUT_OPEN_CAPTURE_FAILED: return "IMAGE_INPUT_OPEN_CAPTURE_FAILED";
 	case VideoChatClientStatus::IMAGE_INPUT_READ_FRAME_FAILED: return "IMAGE_INPUT_READ_FRAME_FAILED";
+>>>>>>> main
 	default: return "unknown";
 	}
 }
