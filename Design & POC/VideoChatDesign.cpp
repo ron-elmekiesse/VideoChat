@@ -39,12 +39,21 @@ public:
         return m_data;
     }
 
+    PacketDataTypes get_type()
+    {
+        return m_input_type;
+    }
 protected:
+    const PacketDataTypes m_input_type;
     Buffer m_data;
 }
 
 class TextInput : IInput
 {
+    TextInput() :
+        m_input_type(PacketDataTypes::Text)
+    {}
+
     void take_input()
     {
         std::get_line(std::cin, m_data);
@@ -53,6 +62,9 @@ class TextInput : IInput
 
 class ImageInput : IInput
 {
+    ImageInput() :
+        m_input_type(PacketDataTypes::Image)
+
     void take_input(){...}
 }
 
@@ -63,47 +75,55 @@ public:
 
 }
 
-struct PacketFormat
+/* TODO: Add overload to "Socket >> " which gets this struct. */
+struct PacketHeaders // 80 bytes
 {
-    // Is this struct necessary?
-}
+    RT_Magic;       // 2 bytes
+    meeting_id;     // 4 bytes
+    user_unique_id; // 4 bytes
+    name[64];       // 64 bytes
+    data_type;      // 2 byte
+    data_size;      // 4 bytes
+};
 
 class PacketCreator
 {
-    PacketCreator(uint32_t meeting_id);
+    PacketCreator(uint32_t meeting_id, const std::string& name, uint32_t user_unique_id);
 
-    void create(Buffer& packet_content)
+    void create(PacketDataTypes data_type, const Buffer& data)
     {
-        // Create the packet with the meta data at the start
+        PacketHeaders headers;
+
+        headers.RT_Magic = MAGIC;
+        headers.meeting_id = m_meeting_id;
+        headers.user_unique_id = m_user_unique_id;
+        std::strncpy(headers.name, m_name.c_str(), 63); // to obtain null terminator.
+        headers.data_type = data_type;
+        headers.data_size = data.size();
+
+        m_raw_packet.resize(FIXED_HEADERS_SIZE + data.size())
+
+        auto const ptr = reinterpret_cast<unsigned char*>(&headers);
+
+        std::copy(ptr, ptr + sizeof(headers), std::back_inserter(m_raw_packet));
+
+        std::copy(data.begin(), data.end(), std::back_inserter(m_raw_packet));
     }
 
-    add_meeting_id(Buffer& buffer)
+    const Buffer& get_raw_packet()
     {
-        /*
-        vec.insert(vec.begin(), (i >> 24) & 0xFF);
-        vec.insert(vec.begin(), (i >> 16) & 0xFF);
-        vec.insert(vec.begin(), (i >> 8) & 0xFF);
-        vec.insert(vec.begin(), (i) & 0xFF);
-        */
-    }
-
-    & get()
-    {
-        return ;
+        return m_raw_packet;
     }
 
     m_meeting_id;
+    m_name;
+    m_user_unique_id;
+    Buffer m_raw_packet;
 }
 
-class PacketParser
+enum class PacketDataTypes : uint16_t
 {
-    // TODO
-}
-
-struct ThreadData
-{
-    const Socket& socket;
-    uint32_t meeting_id;
+    ...
 }
 
 //////////
@@ -111,6 +131,9 @@ struct ThreadData
 client main:
 main()
 {
+    /* Fix this. */
+
+
     get_meeting_id()
 
     AutoCloseSocket auto_close_socket(SERVER_IP, SERVER_PORT)
@@ -130,22 +153,24 @@ main()
 
 /////
 client thread1:
-listener(ThreadData thread_data)
+listener(const Socket& socket, uint32_t meeting_id, IOutput output_device)
 {
-    // try except
+    // TODO: Later on pickup the output device by the data_type from the packet headers.
     try 
     {
-        const Socket& socket = thread_data.socket;
-        IOutput out;
-        Buffer buf;
+        PacketHeaders packet_headers{};
 
         while (true)
         {
-            num_bytes = socket.recv_data(buf)
+            socket >> packet_headers;
 
-            call PacketParser
+            validate_packet(packet_headers, meeting_id)
 
-            out.show_output(buf);
+            Buffer data(packet_headers.data_size);
+
+            socket >> data;
+
+            output_device.show_output(data);
         }
     }
     catch (...)
@@ -155,23 +180,21 @@ listener(ThreadData thread_data)
 ///////
 
 client thread2:
-sender(ThreadData thread_data)
+sender(const Socket& socket, uint32_t meeting_id, const std::string& name, uint32_t user_unique_id, IInput input_device)
 {
-    // try except
+    // Thread for each input activity / device.
     try
     {
-        PacketCreator packet_creator(thread_data.meeting_id);
-        const Socket& socket = thread_data.socket;
+        PacketCreator packet_creator(meeting_id, name, user_unique_id);
         IInput input;
 
         while (true)
         {
-            //get input (maybe threads for av)
             input.get_input()
 
-            packet_creator.create(input.get_data())
+            packet_creator.create(input.get_type(), input.get_data())
 
-            socket.send_data(packet_creator.get())
+            socket << packet_creator.get_raw_packet()
         }
     }
     catch (...)
