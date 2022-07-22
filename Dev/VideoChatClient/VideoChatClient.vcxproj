@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
     <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp" />
+    <ClInclude Include="Common\Common.hpp" />
     <ClInclude Include="Input\IInput.hpp" />
     <ClInclude Include="Input\ImageInput.hpp" />
     <ClInclude Include="Input\TextInput.hpp" />

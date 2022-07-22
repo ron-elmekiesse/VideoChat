@@ -7,7 +7,7 @@ ImageInput::ImageInput() : m_capture()
 	m_capture.open(cv::CAP_ANY);
 	if (!m_capture.isOpened())
 	{
-		throw VideoChatClientException(VideoChatClientStatus::IMAGE_INPUT_OPEN_CAPTURE_FAILED, 0); //TODO
+		throw VideoChatClientException(VideoChatClientStatus::IMAGE_INPUT_OPEN_CAPTURE_FAILED);
 	}
 	m_capture.set(cv::CAP_PROP_FRAME_WIDTH, IMAGE_WIDTH);
 	m_capture.set(cv::CAP_PROP_FRAME_HEIGHT, IMAGE_HEIGHT);
@@ -21,7 +21,7 @@ void ImageInput::take_input()
 
 	if (frame.empty())
 	{
-		throw VideoChatClientException(VideoChatClientStatus::IMAGE_INPUT_READ_FRAME_FAILED, 0); //TODO
+		throw VideoChatClientException(VideoChatClientStatus::IMAGE_INPUT_READ_FRAME_FAILED);
 	}
-	cv::imencode(".jpg", frame, m_data, std::vector<int32_t>());
+	cv::imencode(".jpg", frame, m_data);
 }

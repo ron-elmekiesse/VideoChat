@@ -16,7 +16,7 @@ int wmain()
 		Socket s{auto_close_socket, AF_INET, "127.0.0.1", 8080};
 		//s << std::vector<uint8_t>(str.begin(), str.end());
 		s << "Hello";
-		Buffer buf{};
+		std::vector<uint8_t> buf{};
 		s >> buf;
 		std::cout << buf.data() << std::endl;
 	}

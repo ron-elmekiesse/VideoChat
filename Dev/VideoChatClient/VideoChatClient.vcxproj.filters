@@ -28,6 +28,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{16ac5151-ec9b-4a87-85b4-5af73da6a840}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{7f8e4fd8-8977-467f-a55f-9dfa4f74bcba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Input\TextInput.hpp">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Common.hpp">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

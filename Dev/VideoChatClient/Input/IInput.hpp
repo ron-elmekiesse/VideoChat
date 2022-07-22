@@ -3,13 +3,15 @@
 #include <cstdint>
 #include <vector>
 
-typedef std::vector<uint8_t> Buffer;
+#include "Common/Common.hpp"
 
 class IInput
 {
 public:
 	IInput() = default;
 	virtual ~IInput() = default;
+	IInput(const IInput&) = delete;
+	IInput& operator=(const IInput&) = delete;
 
 	virtual void take_input() = 0;
 
