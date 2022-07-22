@@ -8,9 +8,7 @@
 
 #include "VideoChatClientException/VideoChatClientException.hpp"
 #include "AutoCloseSocket/AutoCloseSocket.hpp"
-
-
-typedef std::vector<uint8_t> Buffer;
+#include "Common/Common.hpp"
 
 class Socket
 {

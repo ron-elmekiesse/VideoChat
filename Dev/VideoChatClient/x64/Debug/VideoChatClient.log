@@ -1,2 +1,5 @@
 ﻿  Main.cpp
+  Socket.cpp
+  Generating Code...
+  LINK : C:\Projects\C++\VideoChat\Dev\x64\Debug\VideoChatClient.exe not found or not built by the last incremental link; performing full link
   VideoChatClient.vcxproj -> C:\Projects\C++\VideoChat\Dev\x64\Debug\VideoChatClient.exe
