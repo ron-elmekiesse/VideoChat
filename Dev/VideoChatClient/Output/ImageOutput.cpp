@@ -11,6 +11,6 @@ void ImageOutput::show_output(Buffer& out)
 	}
 	catch (...)
 	{
-		throw VideoChatClientException(VideoChatClientStatus::IMAGE_OUTPUT_CORRUPTED_IMAGE, 0); //TODO
+		throw VideoChatClientException(VideoChatClientStatus::IMAGE_OUTPUT_CORRUPTED_IMAGE);
 	}
 }
