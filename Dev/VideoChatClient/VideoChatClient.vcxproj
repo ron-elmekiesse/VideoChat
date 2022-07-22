@@ -163,16 +163,13 @@
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
     <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp" />
-<<<<<<< HEAD
-    <ClInclude Include="Output\ImageOutput.hpp" />
-    <ClInclude Include="Output\IOutput.hpp" />
-    <ClInclude Include="Output\TextOutput.hpp" />
-=======
     <ClInclude Include="Common\Common.hpp" />
     <ClInclude Include="Input\IInput.hpp" />
     <ClInclude Include="Input\ImageInput.hpp" />
     <ClInclude Include="Input\TextInput.hpp" />
->>>>>>> main
+    <ClInclude Include="Output\ImageOutput.hpp" />
+    <ClInclude Include="Output\IOutput.hpp" />
+    <ClInclude Include="Output\TextOutput.hpp" />
     <ClInclude Include="Socket\Socket.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp" />
