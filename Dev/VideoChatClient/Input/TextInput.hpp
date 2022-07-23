@@ -8,5 +8,6 @@
 class TextInput : public IInput
 {
 public:
+	TextInput();
 	void take_input() override;
 };

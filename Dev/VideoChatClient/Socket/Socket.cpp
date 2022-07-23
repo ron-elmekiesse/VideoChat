@@ -46,3 +46,13 @@ Socket& operator>>(Socket& socket, Buffer& buffer)
 	buffer.resize(bytes_read);
 	return socket;
 }
+
+Socket& operator>>(Socket& socket, PacketHeaders& headers)
+{
+	int32_t bytes_read = recv(socket.m_socket.get(), reinterpret_cast<char*>(&headers),
+	                          static_cast<int>(sizeof(PacketHeaders)), 0);
+
+	if (bytes_read < 0)
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
+	return socket;
+}
