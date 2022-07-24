@@ -20,19 +20,10 @@ void AudioInput::take_input()
 {
 	sf::SoundBufferRecorder recorder{};
 	recorder.start();
-	Sleep(5000);
+	Sleep(SAMPLING_DURATION);
 	recorder.stop();
 
-	_write_sound_buffer_to_memory(recorder.getBuffer());
-}
-
-void AudioInput::_write_sound_buffer_to_memory(const sf::SoundBuffer& sound_buffer)
-{
-	(void)sound_buffer.saveToFile(TEMP_AUDIO_FILE_NAME);
-
-	std::ifstream file(TEMP_AUDIO_FILE_NAME, std::ios::binary);
-	if (file.good())
-	{
-		m_data = Buffer(std::istreambuf_iterator<char>(file), {});
-	}
+	const auto buffer = recorder.getBuffer();
+	const auto samples = reinterpret_cast<const uint8_t*>(buffer.getSamples());
+	m_data = Buffer(samples, samples + buffer.getSampleCount() * 2);
 }
