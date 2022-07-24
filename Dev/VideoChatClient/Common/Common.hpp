@@ -25,3 +25,5 @@ struct PacketHeaders // 82 bytes
 	PacketDataTypes data_type; // 2 byte
 	uint32_t data_size; // 4 bytes
 };
+
+static constexpr char MAGIC[PACKET_HEADERS_MAGIC_SIZE] = {'R', 'T', 'V', 'C'};
