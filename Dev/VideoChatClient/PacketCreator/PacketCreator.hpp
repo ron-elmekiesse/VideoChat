@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <string>
+#include <iterator>
 
 #include "Common/Common.hpp"
 

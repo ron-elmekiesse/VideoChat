@@ -1,12 +1,9 @@
 #include "PacketCreator.hpp"
 
-#include <iterator>
-
 PacketCreator::PacketCreator(uint32_t meeting_id, const std::string& name, uint32_t user_unique_id) :
 	m_meeting_id(meeting_id),
 	m_name(name),
-	m_user_unique_id(user_unique_id),
-	m_raw_packet()
+	m_user_unique_id(user_unique_id)
 {}
 
 void PacketCreator::create(PacketDataTypes data_type, const Buffer& data)
