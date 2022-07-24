@@ -60,6 +60,12 @@
     <ClCompile Include="Output\TextOutput.cpp">
       <Filter>Output</Filter>
     </ClCompile>
+    <ClCompile Include="Input\AudioInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Output\AudioOutput.cpp">
+      <Filter>Output</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp">
@@ -96,6 +102,12 @@
       <Filter>Output</Filter>
     </ClInclude>
     <ClInclude Include="Output\TextOutput.hpp">
+      <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\AudioInput.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\AudioOutput.hpp">
       <Filter>Output</Filter>
     </ClInclude>
   </ItemGroup>

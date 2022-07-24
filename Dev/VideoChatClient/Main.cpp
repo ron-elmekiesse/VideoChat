@@ -1,13 +1,17 @@
 #include <iostream>
 
 #include "AutoInitWinSock/AutoInitWinSock.hpp"
+#include "Input/AudioInput.hpp"
 #include "Input/ImageInput.hpp"
 #include "Socket/Socket.hpp"
+#include "Output/AudioOutput.hpp"
 
 int wmain()
 {
-	ImageInput im{};
-	im.take_input();
+	AudioInput ai{};
+	ai.take_input();
+	AudioOutput ao{};
+	ao.show_output(ai.get_data());
 
 	try
 	{
