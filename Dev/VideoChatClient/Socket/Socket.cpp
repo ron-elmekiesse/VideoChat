@@ -18,8 +18,10 @@ Socket::Socket(const AutoCloseSocket& socket, const uint16_t sin_family, const s
 Socket& operator<<(Socket& socket, const Buffer& buffer)
 {
 	// Send data:
-	int32_t err = send(socket.m_socket.get(), reinterpret_cast<const char*>(buffer.data()),
-	                   static_cast<int>(buffer.size()), 0);
+	int32_t err = send(socket.m_socket.get(),
+	                   reinterpret_cast<const char*>(buffer.data()),
+	                   static_cast<int>(buffer.size()),
+	                   0);
 	if (SOCKET_ERROR == err)
 	{
 		throw VideoChatClientException(VideoChatClientStatus::SOCKET_SEND_FAILED, GetLastError());
@@ -37,8 +39,10 @@ Socket& operator>>(Socket& socket, Buffer& buffer)
 	// Receive data:
 	buffer.resize(Socket::MAX_PACKET_SIZE);
 
-	int32_t bytes_read = recv(socket.m_socket.get(), reinterpret_cast<char*>(buffer.data()),
-	                          static_cast<int>(buffer.size()), 0);
+	int32_t bytes_read = recv(socket.m_socket.get(),
+	                          reinterpret_cast<char*>(buffer.data()),
+	                          static_cast<int>(buffer.size()),
+	                          0);
 
 	if (bytes_read < 0)
 		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
@@ -49,8 +53,10 @@ Socket& operator>>(Socket& socket, Buffer& buffer)
 
 Socket& operator>>(Socket& socket, PacketHeaders& headers)
 {
-	int32_t bytes_read = recv(socket.m_socket.get(), reinterpret_cast<char*>(&headers),
-	                          sizeof(PacketHeaders), 0);
+	int32_t bytes_read = recv(socket.m_socket.get(),
+	                          reinterpret_cast<char*>(&headers),
+	                          sizeof(PacketHeaders),
+	                          0);
 
 	if (bytes_read < 0)
 		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
