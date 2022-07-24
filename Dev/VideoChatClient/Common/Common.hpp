@@ -4,22 +4,23 @@
 #include <vector>
 
 using Buffer = std::vector<uint8_t>;
-
+constexpr uint32_t MAGIC_SIZE = 4;
+constexpr uint32_t NAME_SIZE = 64;
 
 enum class PacketDataTypes : uint16_t
 {
-    UninitDataType = 0,
+	UninitializedDataType = 0,
 	TextDataType,
 	ImageDataType,
 	AudioDataType,
 };
 
-struct PacketHeaders            // 80 bytes
+struct PacketHeaders // 82 bytes
 {
-    char RT_Magic[2];           // 2 bytes
-    uint32_t meeting_id;        // 4 bytes
-    uint32_t user_unique_id;    // 4 bytes
-    char name[64];              // 64 bytes
-    PacketDataTypes data_type;  // 2 byte
-    uint32_t data_size;         // 4 bytes
+	char magic[MAGIC_SIZE]; // 4 bytes
+	uint32_t meeting_id; // 4 bytes
+	uint32_t user_unique_id; // 4 bytes
+	char name[NAME_SIZE]; // 64 bytes
+	PacketDataTypes data_type; // 2 byte
+	uint32_t data_size; // 4 bytes
 };
