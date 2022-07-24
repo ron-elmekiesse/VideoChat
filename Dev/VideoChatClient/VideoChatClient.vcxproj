@@ -160,6 +160,7 @@
     <ClCompile Include="Output\AudioOutput.cpp" />
     <ClCompile Include="Output\ImageOutput.cpp" />
     <ClCompile Include="Output\TextOutput.cpp" />
+    <ClCompile Include="PacketCreator\PacketCreator.cpp" />
     <ClCompile Include="Socket\Socket.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="Output\ImageOutput.hpp" />
     <ClInclude Include="Output\IOutput.hpp" />
     <ClInclude Include="Output\TextOutput.hpp" />
+    <ClInclude Include="PacketCreator\PacketCreator.hpp" />
     <ClInclude Include="Socket\Socket.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp" />

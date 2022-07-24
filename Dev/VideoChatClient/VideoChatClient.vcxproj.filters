@@ -34,6 +34,9 @@
     <Filter Include="Output">
       <UniqueIdentifier>{14f9fe7a-fca4-4146-92a4-8f1844d0d6b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PacketCreator">
+      <UniqueIdentifier>{bb06294e-46f5-43a6-a1df-2751be5de594}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Output\TextOutput.cpp">
       <Filter>Output</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketCreator\PacketCreator.cpp">
+      <Filter>PacketCreator</Filter>
     </ClCompile>
     <ClCompile Include="Input\AudioInput.cpp">
       <Filter>Input</Filter>
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Output\TextOutput.hpp">
       <Filter>Output</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketCreator\PacketCreator.hpp">
+      <Filter>PacketCreator</Filter>
     </ClInclude>
     <ClInclude Include="Input\AudioInput.hpp">
       <Filter>Input</Filter>
