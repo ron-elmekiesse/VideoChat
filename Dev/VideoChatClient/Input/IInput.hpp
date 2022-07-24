@@ -8,7 +8,10 @@
 class IInput
 {
 public:
-	IInput() = default;
+	IInput(PacketDataTypes input_type) :
+		m_input_type(input_type)
+	{}
+
 	virtual ~IInput() = default;
 	IInput(const IInput&) = delete;
 	IInput& operator=(const IInput&) = delete;
@@ -20,6 +23,12 @@ public:
 		return m_data;
 	}
 
+	PacketDataTypes get_type() const
+	{
+		return m_input_type;
+	}
+
 protected:
+	const PacketDataTypes m_input_type;
 	Buffer m_data;
 };

@@ -2,7 +2,9 @@
 
 #include "VideoChatClientException/VideoChatClientException.hpp"
 
-ImageInput::ImageInput() : m_capture()
+ImageInput::ImageInput() :
+	IInput(PacketDataTypes::ImageDataType),
+	m_capture()
 {
 	m_capture.open(cv::CAP_ANY);
 	if (!m_capture.isOpened())
