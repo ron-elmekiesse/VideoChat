@@ -45,3 +45,5 @@
 /Dev/x64/*
 /Dev/VideoChatClient/x64/*
 /Dev/VideoChatServer/x64/*
+
+/Dev/VideoChatClient/temp.ogg

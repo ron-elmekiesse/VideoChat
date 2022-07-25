@@ -66,6 +66,12 @@
     <ClCompile Include="PacketCreator\PacketCreator.cpp">
       <Filter>PacketCreator</Filter>
     </ClCompile>
+    <ClCompile Include="Input\AudioInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Output\AudioOutput.cpp">
+      <Filter>Output</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp">
@@ -106,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="PacketCreator\PacketCreator.hpp">
       <Filter>PacketCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\AudioInput.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\AudioOutput.hpp">
+      <Filter>Output</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
