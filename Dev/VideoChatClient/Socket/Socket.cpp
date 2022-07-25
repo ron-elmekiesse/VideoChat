@@ -51,11 +51,11 @@ Socket& operator>>(Socket& socket, Buffer& buffer)
 	return socket;
 }
 
-Socket& operator>>(Socket& socket, PacketHeaders& headers)
+Socket& operator>>(Socket& socket, PacketUtils::PacketHeaders& headers)
 {
 	int32_t bytes_read = recv(socket.m_socket.get(),
 	                          reinterpret_cast<char*>(&headers),
-	                          sizeof(PacketHeaders),
+	                          sizeof(PacketUtils::PacketHeaders),
 	                          0);
 
 	if (bytes_read < 0)

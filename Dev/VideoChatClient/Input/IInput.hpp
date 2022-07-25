@@ -4,11 +4,12 @@
 #include <vector>
 
 #include "Common/Common.hpp"
+#include "PacketUtils/PacketUtils.hpp"
 
 class IInput
 {
 public:
-	IInput(PacketDataTypes input_type) :
+	IInput(PacketUtils::PacketDataTypes input_type) :
 		m_input_type(input_type)
 	{}
 
@@ -23,12 +24,12 @@ public:
 		return m_data;
 	}
 
-	PacketDataTypes get_type() const
+	PacketUtils::PacketDataTypes get_type() const
 	{
 		return m_input_type;
 	}
 
 protected:
-	const PacketDataTypes m_input_type;
+	const PacketUtils::PacketDataTypes m_input_type;
 	Buffer m_data;
 };

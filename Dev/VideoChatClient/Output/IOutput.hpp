@@ -13,5 +13,5 @@ public:
 	IOutput(const IOutput&) = delete;
 	IOutput& operator=(const IOutput&) = delete;
 
-	virtual void show_output(Buffer& out) = 0;
+	virtual void show_output(Buffer& out) const = 0;
 };

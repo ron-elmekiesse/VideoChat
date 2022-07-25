@@ -6,5 +6,5 @@
 class ImageOutput : public IOutput
 {
 public:
-	void show_output(Buffer& out) override;
+	void show_output(Buffer& out) const override;
 };

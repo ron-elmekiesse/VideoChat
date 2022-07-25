@@ -10,13 +10,14 @@
 #include "AutoCloseSocket/AutoCloseSocket.hpp"
 #include "Common/Common.hpp"
 #include "PacketCreator/PacketCreator.hpp"
+#include "PacketUtils/PacketUtils.hpp"
 
 class Socket
 {
 	friend Socket& operator<<(Socket& socket, const Buffer& buffer);
 	friend Socket& operator<<(Socket& socket, const std::string& str);
 	friend Socket& operator>>(Socket& socket, Buffer& buffer);
-	friend Socket& operator>>(Socket& socket, PacketHeaders& headers);
+	friend Socket& operator>>(Socket& socket, PacketUtils::PacketHeaders& headers);
 	static constexpr uint32_t MAX_PACKET_SIZE = 4194304; // 4MB
 
 public:
