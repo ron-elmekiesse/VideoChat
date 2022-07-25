@@ -6,7 +6,6 @@
 #include <Windows.h>
 
 #include "IOutput.hpp"
-#include "Input/AudioInput.hpp"
 
 class AudioOutput : public IOutput
 {
