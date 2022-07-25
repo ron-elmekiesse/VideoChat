@@ -6,13 +6,10 @@
 #include <Windows.h>
 
 #include "IOutput.hpp"
+#include "Input/AudioInput.hpp"
 
 class AudioOutput : public IOutput
 {
 public:
 	void show_output(Buffer& out) override;
-
-private:
-	static constexpr uint32_t SAMPLE_RATE = 44100;
-	static constexpr uint32_t MONO_SOUND = 44100;
 };

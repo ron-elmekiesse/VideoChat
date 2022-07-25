@@ -14,6 +14,7 @@ enum class VideoChatClientStatus
 	IMAGE_INPUT_READ_FRAME_FAILED,
 	IMAGE_OUTPUT_CORRUPTED_IMAGE,
 	AUDIO_INPUT_AUDIO_DEVICE_NOT_AVAILABLE,
+	AUDIO_INPUT_COULD_NOT_OPEN_FILE,
 };
 
 inline const char* to_string(VideoChatClientStatus e)
@@ -30,6 +31,7 @@ inline const char* to_string(VideoChatClientStatus e)
 	case VideoChatClientStatus::IMAGE_INPUT_READ_FRAME_FAILED: return "IMAGE_INPUT_READ_FRAME_FAILED";
 	case VideoChatClientStatus::IMAGE_OUTPUT_CORRUPTED_IMAGE: return "IMAGE_OUTPUT_CORRUPTED_IMAGE";
 	case VideoChatClientStatus::AUDIO_INPUT_AUDIO_DEVICE_NOT_AVAILABLE: return "AUDIO_INPUT_AUDIO_DEVICE_NOT_AVAILABLE";
+	case VideoChatClientStatus::AUDIO_INPUT_COULD_NOT_OPEN_FILE: return "AUDIO_INPUT_COULD_NOT_OPEN_FILE";
 	default: return "unknown";
 	}
 }
