@@ -9,6 +9,7 @@
 #include "VideoChatClientException/VideoChatClientException.hpp"
 #include "AutoCloseSocket/AutoCloseSocket.hpp"
 #include "Common/Common.hpp"
+#include "PacketCreator/PacketCreator.hpp"
 
 class Socket
 {
