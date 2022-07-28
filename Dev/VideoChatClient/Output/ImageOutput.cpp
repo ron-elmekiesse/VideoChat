@@ -2,7 +2,7 @@
 
 #include "VideoChatClientException/VideoChatClientException.hpp"
 
-void ImageOutput::show_output(Buffer& out)
+void ImageOutput::show_output(Buffer& out) const
 {
 	try
 	{

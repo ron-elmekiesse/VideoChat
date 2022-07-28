@@ -7,6 +7,7 @@
 #include <iterator>
 
 #include "Common/Common.hpp"
+#include "PacketUtils/PacketUtils.hpp"
 
 class PacketCreator
 {
@@ -16,11 +17,11 @@ public:
 	PacketCreator(const PacketCreator& packet_creator) = delete;
 	PacketCreator& operator=(const PacketCreator&) = delete;
 
-	void create(PacketDataTypes data_type, const Buffer& data);
+	void create(PacketUtils::PacketDataTypes data_type, const Buffer& data);
 	const Buffer& get_raw_packet();
 
 private:
-	void _set_headers(PacketHeaders& headers, const PacketDataTypes& data_type, const Buffer& data) const;
+	void _set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketDataTypes& data_type, const Buffer& data) const;
 
 private:
 	uint32_t m_meeting_id;

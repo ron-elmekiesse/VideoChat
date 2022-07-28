@@ -159,7 +159,9 @@
     <ClCompile Include="Output\ImageOutput.cpp" />
     <ClCompile Include="Output\TextOutput.cpp" />
     <ClCompile Include="PacketCreator\PacketCreator.cpp" />
+    <ClCompile Include="PacketUtils\PacketUtils.cpp" />
     <ClCompile Include="Socket\Socket.cpp" />
+    <ClCompile Include="ThreadsEntryPoint\ThreadsEntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
@@ -172,7 +174,9 @@
     <ClInclude Include="Output\IOutput.hpp" />
     <ClInclude Include="Output\TextOutput.hpp" />
     <ClInclude Include="PacketCreator\PacketCreator.hpp" />
+    <ClInclude Include="PacketUtils\PacketUtils.hpp" />
     <ClInclude Include="Socket\Socket.hpp" />
+    <ClInclude Include="ThreadsEntryPoint\ThreadsEntryPoint.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientException.hpp" />
     <ClInclude Include="VideoChatClientException\VideoChatClientStatus.hpp" />
   </ItemGroup>

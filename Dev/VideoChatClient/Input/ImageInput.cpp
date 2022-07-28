@@ -3,7 +3,7 @@
 #include "VideoChatClientException/VideoChatClientException.hpp"
 
 ImageInput::ImageInput() :
-	IInput(PacketDataTypes::ImageDataType),
+	IInput(PacketUtils::PacketDataTypes::ImageDataType),
 	m_capture()
 {
 	m_capture.open(cv::CAP_ANY);

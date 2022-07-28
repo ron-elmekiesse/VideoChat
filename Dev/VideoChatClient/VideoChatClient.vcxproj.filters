@@ -37,6 +37,12 @@
     <Filter Include="PacketCreator">
       <UniqueIdentifier>{bb06294e-46f5-43a6-a1df-2751be5de594}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThreadsEntryPoint">
+      <UniqueIdentifier>{a7b8825f-880e-4533-8f44-050c337852c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketUtils">
+      <UniqueIdentifier>{9c2af222-cad5-4ca5-a1bb-5a4493b1c6ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -65,6 +71,12 @@
     </ClCompile>
     <ClCompile Include="PacketCreator\PacketCreator.cpp">
       <Filter>PacketCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadsEntryPoint\ThreadsEntryPoint.cpp">
+      <Filter>ThreadsEntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketUtils\PacketUtils.cpp">
+      <Filter>PacketUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="PacketCreator\PacketCreator.hpp">
       <Filter>PacketCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadsEntryPoint\ThreadsEntryPoint.hpp">
+      <Filter>ThreadsEntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketUtils\PacketUtils.hpp">
+      <Filter>PacketUtils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
