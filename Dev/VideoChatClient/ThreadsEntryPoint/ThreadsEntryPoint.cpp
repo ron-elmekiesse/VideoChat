@@ -2,9 +2,10 @@
 
 void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, const IOutput& output_device)
 {
+	PacketUtils::PacketHeaders packet_headers{};
+	
 	try
 	{
-		PacketUtils::PacketHeaders packet_headers{};
 
 		while (true)
 		{
@@ -25,6 +26,6 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 	}
 	catch (...)
 	{
-		std::cout << "Listener got an Unknown Exception!" << std::endl;
+		std::cerr << "Listener got an Unknown Exception!" << std::endl;
 	}
 }
