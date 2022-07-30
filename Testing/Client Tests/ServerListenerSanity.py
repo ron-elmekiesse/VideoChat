@@ -28,4 +28,4 @@ def test_sanity_server_listener(ip: str, port: int):
 
 
 if __name__ == '__main__':
-    test_sanity_server_listener("127.0.0.1", 8080)
+    test_sanity_server_listener('127.0.0.1', 8080)
