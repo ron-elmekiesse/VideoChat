@@ -11,7 +11,7 @@ Socket::Socket(const AutoCloseSocket& socket, const uint16_t sin_family, const s
 
 	if (SOCKET_ERROR == connect(m_socket.get(), reinterpret_cast<SOCKADDR*>(&client_service), sizeof(client_service)))
 	{
-		throw VideoChatClientException(VideoChatClientStatus::SOCKET_CONNECT_SOCKET_FAILED, GetLastError());
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_CONNECT_SOCKET_FAILED, WSAGetLastError());
 	}
 }
 
@@ -24,7 +24,7 @@ Socket& operator<<(Socket& socket, const Buffer& buffer)
 	                   0);
 	if (SOCKET_ERROR == err)
 	{
-		throw VideoChatClientException(VideoChatClientStatus::SOCKET_SEND_FAILED, GetLastError());
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_SEND_FAILED, WSAGetLastError());
 	}
 	return socket;
 }
@@ -36,18 +36,17 @@ Socket& operator<<(Socket& socket, const std::string& str)
 
 Socket& operator>>(Socket& socket, Buffer& buffer)
 {
-	// Receive data:
-	buffer.resize(Socket::MAX_PACKET_SIZE);
-
 	int32_t bytes_read = recv(socket.m_socket.get(),
 	                          reinterpret_cast<char*>(buffer.data()),
 	                          static_cast<int>(buffer.size()),
 	                          0);
 
 	if (bytes_read < 0)
-		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_TO_BUFFER_FAILED, WSAGetLastError());
 
-	buffer.resize(bytes_read);
+	else if (0 == bytes_read)
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_TO_BUFFER_HEADERS_CONNECTION_HAS_CLOSED);
+
 	return socket;
 }
 
@@ -57,8 +56,12 @@ Socket& operator>>(Socket& socket, PacketUtils::PacketHeaders& headers)
 	                          reinterpret_cast<char*>(&headers),
 	                          sizeof(PacketUtils::PacketHeaders),
 	                          0);
-
+	
 	if (bytes_read < 0)
-		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_FAILED, GetLastError());
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_TO_PACKET_HEADERS_FAILED, WSAGetLastError());
+
+	else if (0 == bytes_read)
+		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_TO_PACKET_HEADERS_CONNECTION_HAS_CLOSED);
+
 	return socket;
 }

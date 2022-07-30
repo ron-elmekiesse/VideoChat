@@ -6,7 +6,6 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 	
 	try
 	{
-
 		while (true)
 		{
 			socket >> packet_headers;

@@ -20,6 +20,8 @@ namespace PacketUtils
 		AudioDataType,
 	};
 
+	#pragma pack(1) // Tell the compiler to do not pad the struct at all.
+	
 	struct PacketHeaders // 82 bytes
 	{
 		char magic[PACKET_HEADERS_MAGIC_SIZE]; // 4 bytes
@@ -29,6 +31,8 @@ namespace PacketUtils
 		PacketDataTypes data_type; // 2 byte
 		uint32_t data_size; // 4 bytes
 	};
+	
+	#pragma pack() // Continue using the normal padding.
 
 	void validate_packet(const PacketHeaders& packet_headers, uint32_t meeting_id);
 }
