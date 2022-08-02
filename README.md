@@ -1,4 +1,5 @@
 # VideoChat
+## Client
 
 ### Install OpenCV
 * Go to this [link](https://opencv.org/releases/) and click on the Windows installler.
@@ -16,3 +17,11 @@
 * Modify `properties->C/C++->General->Additional Include Dependencies` and set the correct version of your SFML.
 * Good to go.
 
+## Server
+### Install Boost
+* Go to this [link](https://www.boost.org/users/download/) and download the latest version of Boost.
+* Copy the folder from downloads to another place.
+* Open cmd inside the Boost folder.
+* Run `bootstrap.bat` or `bootstrap.sh`, depending on your OS.
+* Run the `b2` executable.
+* Change Boost path in `set(Boost_ROOT)` to the path of your Boost folder.
