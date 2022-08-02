@@ -32,10 +32,10 @@
 *.app
 
 # cmake out files
-./cmake-build-debug-visual-studio
-./cmake-build-release-visual-studio
-./cmake-build-debug-wsl
-./cmake-build-release-wsl
+/Dev/VideoChatServer/cmake-build-debug-visual-studio
+/Dev/VideoChatServer/cmake-build-release-visual-studio
+/Dev/VideoChatServer/cmake-build-debug-wsl
+/Dev/VideoChatServer/cmake-build-release-wsl
 
 */.idea*
 *.vs*
