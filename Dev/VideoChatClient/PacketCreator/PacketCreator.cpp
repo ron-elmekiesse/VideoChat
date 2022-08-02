@@ -14,8 +14,8 @@ void PacketCreator::create(PacketUtils::PacketDataTypes data_type, const Buffer&
 	m_raw_packet.resize(sizeof(PacketUtils::PacketHeaders) + data.size());
 
 	const auto ptr = reinterpret_cast<unsigned char*>(&headers);
-	std::copy(ptr, ptr + sizeof(headers), std::back_inserter(m_raw_packet));
-	std::copy(data.begin(), data.end(), std::back_inserter(m_raw_packet));
+	std::copy(ptr, ptr + sizeof(headers), m_raw_packet.begin());
+	std::copy(data.begin(), data.end(), m_raw_packet.begin() + sizeof(headers));
 }
 
 void PacketCreator::_set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketDataTypes& data_type, const Buffer& data) const
