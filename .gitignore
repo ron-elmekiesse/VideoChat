@@ -40,8 +40,5 @@
 */.idea*
 *.vs*
 
-/Dev/ThirdParty/OpenCV/opencv2/*
-/Dev/ThirdParty/SFML-2.5.1/*
-/Dev/x64/*
+
 /Dev/VideoChatClient/x64/*
-/Dev/VideoChatServer/x64/*
