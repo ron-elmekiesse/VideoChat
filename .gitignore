@@ -32,16 +32,16 @@
 *.app
 
 # cmake out files
-./cmake-build-debug-visual-studio
-./cmake-build-release-visual-studio
-./cmake-build-debug-wsl
-./cmake-build-release-wsl
+/Dev/VideoChatServer/cmake-build-debug-visual-studio
+/Dev/VideoChatServer/cmake-build-release-visual-studio
+/Dev/VideoChatServer/cmake-build-debug-wsl
+/Dev/VideoChatServer/cmake-build-release-wsl
 
 */.idea*
 *.vs*
 
+
 /Dev/ThirdParty/OpenCV/opencv2/*
 /Dev/ThirdParty/SFML-2.5.1/*
-/Dev/x64/*
 /Dev/VideoChatClient/x64/*
-/Dev/VideoChatServer/x64/*
+/Dev/x64/*
