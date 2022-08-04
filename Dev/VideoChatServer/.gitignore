@@ -11,3 +11,5 @@ VideoChatServer
 VideoChatServer.cbp
 CMakeFiles/
 .idea/
+.vscode/
+build/
