@@ -24,4 +24,4 @@
 * Open cmd inside the Boost folder.
 * Run `bootstrap.bat` or `bootstrap.sh`, depending on your OS.
 * Run the `b2` executable.
-* Change Boost path in `set(Boost_ROOT)` to the path of your Boost folder.
+* Change Boost path in `set(Boost_ROOT)` in CMakeLists.txt to the path of your Boost folder.
