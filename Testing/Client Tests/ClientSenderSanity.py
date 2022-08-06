@@ -17,6 +17,9 @@ def test_sanity_server_listener(ip: str, port: int):
     while True:
         packet = connected_sock.recv(1024)
 
+        if len(packet) == 0:  # When connection is lost.
+            return
+
         packet_fields = unpack_to_server_packet(packet)
 
         print(packet_fields)
