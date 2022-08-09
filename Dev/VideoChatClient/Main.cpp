@@ -6,41 +6,27 @@
 #include "Output/TextOutput.hpp"
 #include "ThreadsEntryPoint/ThreadsEntryPoint.hpp"
 #include "Input/TextInput.hpp"
+#include "ClientStartup/ClientStartup.hpp"
 
 int wmain()
 {
-	AutoInitWinSock auto_init_win_sock{};
+	const AutoInitWinSock auto_init_win_sock{};
 	const AutoCloseSocket auto_close_socket{AF_INET, SOCK_STREAM, IPPROTO_TCP};
 	Socket s{auto_close_socket, AF_INET, "127.0.0.1", 8080};
-	//TextOutput text_output{};
 
-	//ThreadsEntryPoint::server_listener(s, 1, text_output);
+	const std::string username = ClientStartup::take_username();
+	const uint32_t user_id = ClientStartup::send_client_hello(s, username);
+	const uint32_t meeting_id = ClientStartup::client_startup_menu(s, user_id, username);
+
+
+	const TextOutput text_output{};
+	std::thread listener{ThreadsEntryPoint::server_listener, s, meeting_id, text_output};
 
 	TextInput text_input{};
-	ThreadsEntryPoint::client_sender(s, 1, "king ron", 1337, text_input);
+	std::thread sender{ThreadsEntryPoint::client_sender, s, meeting_id, username, user_id, text_input};
 
-	//ImageInput im{};
-	//im.take_input();
-
-	//try
-	//{
-	//	AutoInitWinSock auto_init_win_sock{};
-	//	const AutoCloseSocket auto_close_socket{AF_INET, SOCK_STREAM, IPPROTO_TCP};
-	//	Socket s{auto_close_socket, AF_INET, "127.0.0.1", 8080};
-	//	//s << Buffer(str.begin(), str.end());
-	//	s << "Hello";
-	//	Buffer buf{};
-	//	s >> buf;
-	//	std::cout << buf.data() << std::endl;
-	//}
-	//catch (const VideoChatClientException& exc)
-	//{
-	//	std::cerr << exc << std::endl;
-	//}
-	//catch (...)
-	//{
-	//	std::cerr << "An unknown exception has occurred" << std::endl;
-	//}
+	listener.join();
+	sender.join();
 
 	return 0;
 }

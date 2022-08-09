@@ -43,6 +43,9 @@
     <Filter Include="PacketUtils">
       <UniqueIdentifier>{9c2af222-cad5-4ca5-a1bb-5a4493b1c6ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ClientStartup">
+      <UniqueIdentifier>{a0c849e4-cedd-4a03-b4fe-a952d24a4466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="PacketUtils\PacketUtils.cpp">
       <Filter>PacketUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientStartup\ClientStartup.cpp">
+      <Filter>ClientStartup</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="PacketUtils\PacketUtils.hpp">
       <Filter>PacketUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientStartup\ClientStartup.hpp">
+      <Filter>ClientStartup</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

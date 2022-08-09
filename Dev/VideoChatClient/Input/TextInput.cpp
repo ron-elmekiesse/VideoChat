@@ -1,7 +1,7 @@
 #include "TextInput.hpp"
 
 TextInput::TextInput() :
-	IInput(PacketUtils::PacketDataTypes::TextDataType)
+	IInput(PacketUtils::PacketTypes::SendTextPacketType)
 {}
 
 void TextInput::take_input()

@@ -9,7 +9,7 @@
 class IInput
 {
 public:
-	IInput(PacketUtils::PacketDataTypes input_type) :
+	IInput(PacketUtils::PacketTypes input_type) :
 		m_input_type(input_type)
 	{}
 
@@ -24,12 +24,12 @@ public:
 		return m_data;
 	}
 
-	PacketUtils::PacketDataTypes get_type() const
+	PacketUtils::PacketTypes get_type() const
 	{
 		return m_input_type;
 	}
 
 protected:
-	const PacketUtils::PacketDataTypes m_input_type;
+	const PacketUtils::PacketTypes m_input_type;
 	Buffer m_data;
 };

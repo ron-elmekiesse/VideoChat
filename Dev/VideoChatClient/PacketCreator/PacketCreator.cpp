@@ -6,7 +6,7 @@ PacketCreator::PacketCreator(uint32_t meeting_id, const std::string& name, uint3
 	m_user_unique_id(user_unique_id)
 {}
 
-void PacketCreator::create(PacketUtils::PacketDataTypes data_type, const Buffer& data)
+void PacketCreator::create(PacketUtils::PacketTypes data_type, const Buffer& data)
 {
 	m_raw_packet = {};
 	PacketUtils::PacketHeaders headers{};
@@ -18,7 +18,8 @@ void PacketCreator::create(PacketUtils::PacketDataTypes data_type, const Buffer&
 	std::copy(data.begin(), data.end(), m_raw_packet.begin() + sizeof(headers));
 }
 
-void PacketCreator::_set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketDataTypes& data_type, const Buffer& data) const
+void PacketCreator::_set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketTypes& data_type,
+                                 const Buffer& data) const
 {
 	std::strncpy(headers.magic, PacketUtils::MAGIC, PacketUtils::PACKET_HEADERS_MAGIC_SIZE);
 	headers.meeting_id = m_meeting_id;

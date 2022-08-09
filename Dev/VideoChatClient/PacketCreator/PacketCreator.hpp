@@ -17,11 +17,12 @@ public:
 	PacketCreator(const PacketCreator& packet_creator) = delete;
 	PacketCreator& operator=(const PacketCreator&) = delete;
 
-	void create(PacketUtils::PacketDataTypes data_type, const Buffer& data);
+	void create(PacketUtils::PacketTypes data_type, const Buffer& data);
 	const Buffer& get_raw_packet();
 
 private:
-	void _set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketDataTypes& data_type, const Buffer& data) const;
+	void _set_headers(PacketUtils::PacketHeaders& headers, const PacketUtils::PacketTypes& data_type,
+	                  const Buffer& data) const;
 
 private:
 	uint32_t m_meeting_id;
