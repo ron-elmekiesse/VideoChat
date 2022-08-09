@@ -1,0 +1,15 @@
+cmake_install.cmake
+cmake-build-debug-visual-studio/
+cmake-build-debug-wsl/
+cmake-build-release-visual-studio/
+cmake-build-release-wsl/
+.cmake/
+Testing/
+Makefile
+CMakeCache.txt
+VideoChatServer
+VideoChatServer.cbp
+CMakeFiles/
+.idea/
+.vscode/
+build/
