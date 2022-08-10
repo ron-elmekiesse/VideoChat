@@ -10,13 +10,6 @@
 #include "ClientStartup/ClientStartup.hpp"
 
 
-void foo(Socket& s)
-{
-	Buffer str(100);
-	s >> str;
-	std::cout << str.data() << std::endl;
-}
-
 int wmain()
 {
 	const AutoInitWinSock auto_init_win_sock{};
