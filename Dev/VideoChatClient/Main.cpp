@@ -33,7 +33,7 @@ int wmain()
 		ThreadsEntryPoint::server_listener,
 		std::ref(s),
 		meeting_id,
-		std::ref(text_output)
+		std::cref(text_output)
 	};
 
 	TextInput text_input{};
