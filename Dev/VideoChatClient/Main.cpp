@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 
 #include "AutoInitWinSock/AutoInitWinSock.hpp"
 #include "Input/ImageInput.hpp"
@@ -7,6 +8,14 @@
 #include "ThreadsEntryPoint/ThreadsEntryPoint.hpp"
 #include "Input/TextInput.hpp"
 #include "ClientStartup/ClientStartup.hpp"
+
+
+void foo(Socket& s)
+{
+	Buffer str(100);
+	s >> str;
+	std::cout << str.data() << std::endl;
+}
 
 int wmain()
 {
@@ -20,10 +29,22 @@ int wmain()
 
 
 	const TextOutput text_output{};
-	std::thread listener{ThreadsEntryPoint::server_listener, s, meeting_id, text_output};
+	std::thread listener{
+		ThreadsEntryPoint::server_listener,
+		std::ref(s),
+		meeting_id,
+		std::ref(text_output)
+	};
 
 	TextInput text_input{};
-	std::thread sender{ThreadsEntryPoint::client_sender, s, meeting_id, username, user_id, text_input};
+	std::thread sender{
+		ThreadsEntryPoint::client_sender,
+		std::ref(s),
+		meeting_id,
+		username,
+		user_id,
+		std::ref(text_input)
+	};
 
 	listener.join();
 	sender.join();

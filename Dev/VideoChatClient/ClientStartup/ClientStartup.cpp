@@ -9,9 +9,9 @@ std::string ClientStartup::take_username()
 			std::endl;
 		std::getline(std::cin, username);
 	}
-	while (username.size() > PacketUtils::PACKET_HEADERS_NAME_SIZE - 1);
+	while (username.length() > PacketUtils::PACKET_HEADERS_NAME_SIZE - 1);
 
-	return username;
+	return std::string(username); // To prevent huge chunks of allocated memory staying alive
 }
 
 uint32_t ClientStartup::send_client_hello(Socket& socket, const std::string& username)
@@ -23,6 +23,7 @@ uint32_t ClientStartup::send_client_hello(Socket& socket, const std::string& use
 
 	PacketUtils::PacketHeaders headers{};
 	socket >> headers;
+	PacketUtils::validate_packet(headers, UNKNOWN_MEETING_ID);
 
 	return headers.user_unique_id;
 }
@@ -40,6 +41,7 @@ uint32_t send_meeting_packet(Socket& socket,
 
 	PacketUtils::PacketHeaders headers{};
 	socket >> headers;
+	PacketUtils::validate_packet(headers, headers.meeting_id); // just validate magic
 
 	return headers.meeting_id;
 }
@@ -60,7 +62,6 @@ uint32_t take_meeting_id()
 uint32_t ClientStartup::client_startup_menu(Socket& socket, const uint32_t uuid, const std::string& username)
 {
 	uint32_t choice = 0;
-	PacketUtils::PacketTypes packet_type{};
 
 	while (true)
 	{
