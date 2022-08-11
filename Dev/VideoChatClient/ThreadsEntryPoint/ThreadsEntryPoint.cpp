@@ -16,7 +16,7 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 
 			socket >> data;
 
-			output_device.show_output(data);
+			output_device.show_output(data, packet_headers);
 		}
 	}
 	catch (const VideoChatClientException& exc)

@@ -6,6 +6,8 @@ TextInput::TextInput() :
 
 void TextInput::take_input()
 {
+	std::cout << "Enter your message: ";
+
 	std::string input{};
 	while (!input.length())
 	{
