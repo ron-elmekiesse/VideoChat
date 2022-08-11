@@ -25,7 +25,7 @@ void PacketCreator::_set_headers(PacketUtils::PacketHeaders& headers, const Pack
 	headers.meeting_id = m_meeting_id;
 	headers.user_unique_id = m_user_unique_id;
 	std::strncpy(headers.name, m_name.c_str(), sizeof(headers.name) - 1); // to obtain null terminator.
-	headers.data_type = data_type;
+	headers.packet_type = data_type;
 	headers.data_size = static_cast<uint32_t>(data.size());
 }
 
