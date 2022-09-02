@@ -205,6 +205,16 @@ sender(const Socket& socket, uint32_t meeting_id, const std::string& name, uint3
 
 Server:
 
+// TODO: check "register_async_operation" validity.
+void register_async_operation(const Buffer& buffer, std::function<...> async_operation, void* handler)
+{
+    async_operation(boost::asio::buffer(buffer.data(), buffer.size()),
+                    boost::bind(handler,
+                    shared_from_this(),
+                    boost::asio::placeholders::error,
+                    boost::asio::placeholders::bytes_transferred));
+}
+
 class NewClientConnectionHandler : public boost::enable_shared_from_this<NewClientConnectionHandler>
 {
 public:
@@ -256,6 +266,7 @@ public:
                             boost::asio::placeholders::error,
                             boost::asio::placeholders::bytes_transferred));
 
+        // TODO: Is this "async_write_some" call is needable? remove later.
         sock.async_write_some(
                 boost::asio::buffer(, max_packet_length),
                 boost::bind(&NewClientConnectionHandler::handle_write,
@@ -347,7 +358,7 @@ public:
         if (!err) {
             connection->start();
         }
-        start_accept();
+        _start_accept();
     }
 private:
     void _start_accept()
@@ -365,6 +376,8 @@ private:
     tcp::acceptor acceptor;
 };
 
+
+// TODO: Change the acceptor loop according to POC.
 void acceptor_loop()
 {
     io_service io_service;
