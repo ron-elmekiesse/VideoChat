@@ -1,0 +1,14 @@
+cmake_install.cmake
+cmake-build-debug-visual-studio/
+cmake-build-debug-wsl/
+cmake-build-release-visual-studio/
+cmake-build-release-wsl/
+.cmake/
+Makefile
+CMakeCache.txt
+POC
+POC.cbp
+CMakeFiles/
+.idea/
+.vscode/
+build/

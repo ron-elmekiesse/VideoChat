@@ -1,9 +1,17 @@
-cmake_minimum_required(VERSION 3.14)
-project(VideoChat)
-set(GCC_COVERAGE_COMPILE_FLAGS "-pthread")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}")
-
+cmake_minimum_required(VERSION 3.22)
+project(POC)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(VideoChat Server/src/server.cpp)
+set(Boost_ROOT /mnt/c/libs/boost_1_79_0)
+set(Boost_INCLUDE_DIR ${Boost_ROOT})
+set(Boost_INCLUDE_DIRS ${Boost_ROOT})
+
+find_package(Boost REQUIRED COMPONENTS system)
+message(STATUS "** Boost Include: ${Boost_INCLUDE_DIRS}")
+
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    add_executable(POC src/Main.cpp)
+    target_link_libraries(POC pthread)
+endif ()
