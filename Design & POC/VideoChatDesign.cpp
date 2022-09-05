@@ -205,42 +205,208 @@ sender(const Socket& socket, uint32_t meeting_id, const std::string& name, uint3
 
 Server:
 
-
-namespace meeting
+// TODO: check "register_async_operation" validity.
+void register_async_operation(const Buffer& buffer, std::function<...> async_operation, void* handler)
 {
-
+    async_operation(boost::asio::buffer(buffer.data(), buffer.size()),
+                    boost::bind(handler,
+                    shared_from_this(),
+                    boost::asio::placeholders::error,
+                    boost::asio::placeholders::bytes_transferred));
 }
 
-extern std::map<uint32_t, std::vector<AutoCloseSocket>> meetings;
-
-class Server
+class NewClientConnectionHandler : public boost::enable_shared_from_this<NewClientConnectionHandler>
 {
 public:
-    Server(port) :
-            m_server_socket(_s_init_socket())
+    typedef boost::shared_ptr<NewClientConnectionHandler> pointer;
+
+    NewClientConnectionHandler(boost::asio::io_service& io_service):
+        sock(io_service),
+        packet_data(max_packet_length)
     {}
 
-    ~Server(){}
-
-    void start_server()
+    // creating the pointer
+    static pointer create(boost::asio::io_service& io_service)
     {
+        return pointer(new NewClientConnectionHandler(io_service));
+    }
+
+    //socket creation
+    tcp::socket& socket()
+    {
+        return sock;
+    }
+
+    void basic_handle_read_check(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        if (err)
+        {
+            std::cerr << "error: " << err.message() << std::endl;
+            sock.close();
+        }
+    }
+
+
+    void basic_handle_write_check(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        if (!err) {
+            cout << "Server sent Hello message!"<< endl;
+        } else {
+            std::cerr << "error: " << err.message() << endl;
+            sock.close();
+        }
+    }
+
+    void start()
+    {
+        sock.async_read_some(
+                boost::asio::buffer(packet_data.data(), max_packet_length),
+                boost::bind(&NewClientConnectionHandler::handle_client_hello,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
+
+        // TODO: Is this "async_write_some" call is needable? remove later.
+        sock.async_write_some(
+                boost::asio::buffer(, max_packet_length),
+                boost::bind(&NewClientConnectionHandler::handle_write,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
+    }
+
+    void handle_client_hello(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        basic_handle_read_check(err, bytes_transferred);
+
+        uuid = generate_uuid();
+
+        PacketCreator.create(uuid=uuid);
+
+        data = PacketCreator.get_raw_packet()
+
+        sock.async_write_some(
+                boost::asio::buffer(data, data.size()),
+                boost::bind(&NewClientConnectionHandler::handle_write_server_hello,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
+    }
+
+    void handle_write_server_hello(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        basic_handle_write_check(err, bytes_transferred);
+
+        sock.async_read_some(
+                boost::asio::buffer(packet_data.data(), max_packet_length),
+                boost::bind(&NewClientConnectionHandler::handle_enter_meeting,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
+    }
+
+    void handle_enter_meeting(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        basic_handle_read_check(err, bytes_transferred);
+
+        meeting_id = create_new_meeting_or_join(...);
+
+        PacketCreator.create(...);
+
+        data = PacketCreator.get_raw_packet()
+
+        sock.async_write_some(
+                boost::asio::buffer(data, data.size()),
+                boost::bind(&NewClientConnectionHandler::handle_write_server_enter_meeting,
+                            shared_from_this(),
+                            boost::asio::placeholders::error,
+                            boost::asio::placeholders::bytes_transferred));
+    }
+
+    void handle_write_server_enter_meeting(const boost::system::error_code& err, size_t bytes_transferred)
+    {
+        basic_handle_write_check(err, bytes_transferred);
+
+        if client meetind_id not in map:
+            std::thread(...)
+
+        map_mutex.lock()
+        map.insert(Client...)
+        map_mutex.unlock()
+    }
+
+
+private:
+    tcp::socket sock;
+    constexpr uint32_t max_packet_length = sizeof(PacketHeaders);
+    Buffer packet_data;
+};
+
+
+class ServerSetupNewClients
+{
+public:
+    //constructor for accepting connection from client
+    ServerSetupNewClients(io_service& io_service):
+        acceptor(io_service, tcp::endpoint(tcp::v4(), 1337))
+    {
+        _start_accept();
+    }
+
+    void handle_accept(NewClientConnectionHandler::pointer connection, const boost::system::error_code& err)
+    {
+        if (!err) {
+            connection->start();
+        }
+        _start_accept();
+    }
+private:
+    void _start_accept()
+    {
+        // socket
+        NewClientConnectionHandler::pointer connection = NewClientConnectionHandler::create(acceptor_.get_io_service());
+
+        // asynchronous accept operation and wait for a new connection.
+        acceptor_.async_accept(connection->socket(),
+                               boost::bind(&Server::handle_accept, this, connection,
+                                           boost::asio::placeholders::error));
+    }
+
+private:
+    tcp::acceptor acceptor;
+};
+
+
+// TODO: Change the acceptor loop according to POC.
+void acceptor_loop()
+{
+    io_service io_service;
+
+    udp::socket socket(io_service);
+
+    // Accept at 0.0.0.0:1337
+    udp::acceptor acceptor(io_service, udp::endpoint(tcp::v4(), 1337));
+
+    while (true)
+    {
+        acceptor.async_accept(socket);
+
+        socket.async_read_some();
 
     }
-    
-private:
-    static Socket _s_init_socket(){
-        Socket s = bind;
-        listen
-        return s;
-    }
-    AutoCloseSocket m_server_socket;
+
 }
+
+
+
 
 /*
  * Notes:
  * Each meeting will have its own thread.
  * When a new client is connected, the server adds the newly created socket to the
  * map at the specific meeting ID.
+ *
+ * Change to UDP.
  *
  * Thoughts:
  * Validate that no Mutex is needed for the map.

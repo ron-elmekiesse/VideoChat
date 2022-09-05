@@ -56,7 +56,7 @@ Socket& operator>>(Socket& socket, PacketUtils::PacketHeaders& headers)
 	                          reinterpret_cast<char*>(&headers),
 	                          sizeof(PacketUtils::PacketHeaders),
 	                          0);
-	
+
 	if (bytes_read < 0)
 		throw VideoChatClientException(VideoChatClientStatus::SOCKET_RECV_TO_PACKET_HEADERS_FAILED, WSAGetLastError());
 
