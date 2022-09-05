@@ -215,14 +215,19 @@ void register_async_operation(const Buffer& buffer, std::function<...> async_ope
                     boost::asio::placeholders::bytes_transferred));
 }
 
+class MeetingHub : public boost::enable_shared_from_this<NewClientConnectionHandler>
+{
+
+};
+
 class NewClientConnectionHandler : public boost::enable_shared_from_this<NewClientConnectionHandler>
 {
 public:
     typedef boost::shared_ptr<NewClientConnectionHandler> pointer;
 
     NewClientConnectionHandler(boost::asio::io_service& io_service):
-        sock(io_service),
-        packet_data(max_packet_length)
+        m_sock(io_service),
+        m_packet_headers(0)
     {}
 
     // creating the pointer
@@ -259,17 +264,10 @@ public:
 
     void start()
     {
+        // TODO: change to asio::async_read everywhere (we know how many to read).
         sock.async_read_some(
-                boost::asio::buffer(packet_data.data(), max_packet_length),
+                boost::asio::buffer(m_packet_headers, sizeof(m_packet_headers)),
                 boost::bind(&NewClientConnectionHandler::handle_client_hello,
-                            shared_from_this(),
-                            boost::asio::placeholders::error,
-                            boost::asio::placeholders::bytes_transferred));
-
-        // TODO: Is this "async_write_some" call is needable? remove later.
-        sock.async_write_some(
-                boost::asio::buffer(, max_packet_length),
-                boost::bind(&NewClientConnectionHandler::handle_write,
                             shared_from_this(),
                             boost::asio::placeholders::error,
                             boost::asio::placeholders::bytes_transferred));
@@ -298,7 +296,7 @@ public:
         basic_handle_write_check(err, bytes_transferred);
 
         sock.async_read_some(
-                boost::asio::buffer(packet_data.data(), max_packet_length),
+                boost::asio::buffer(m_packet_headers, sizeof(m_packet_headers)),
                 boost::bind(&NewClientConnectionHandler::handle_enter_meeting,
                             shared_from_this(),
                             boost::asio::placeholders::error,
@@ -309,7 +307,11 @@ public:
     {
         basic_handle_read_check(err, bytes_transferred);
 
-        meeting_id = create_new_meeting_or_join(...);
+        // TODO: When ExistingMeeting PacketType is given and no meeting exists:
+        //       Return a corresponding PacketType and register again.
+        //       Change in client - ClientStartup::client_startup_menu,
+        //       if fails so return from there
+        meeting_id = get_new_or_existing_meeting_id(m_packet_headers);
 
         PacketCreator.create(...);
 
@@ -328,7 +330,7 @@ public:
         basic_handle_write_check(err, bytes_transferred);
 
         if client meetind_id not in map:
-            std::thread(...)
+            std::thread(async_loop_service<MeetingHub>)
 
         map_mutex.lock()
         map.insert(Client...)
@@ -337,9 +339,8 @@ public:
 
 
 private:
-    tcp::socket sock;
-    constexpr uint32_t max_packet_length = sizeof(PacketHeaders);
-    Buffer packet_data;
+    tcp::socket m_sock;
+    PacketHeaders m_packet_headers;
 };
 
 
@@ -364,7 +365,8 @@ private:
     void _start_accept()
     {
         // socket
-        NewClientConnectionHandler::pointer connection = NewClientConnectionHandler::create(acceptor_.get_io_service());
+        NewClientConnectionHandler::pointer connection = NewClientConnectionHandler::create(
+                (asio::io_context&)(m_acceptor).get_executor().context());
 
         // asynchronous accept operation and wait for a new connection.
         acceptor_.async_accept(connection->socket(),
@@ -373,31 +375,40 @@ private:
     }
 
 private:
-    tcp::acceptor acceptor;
+    tcp::acceptor m_acceptor;
 };
 
-
-// TODO: Change the acceptor loop according to POC.
-void acceptor_loop()
+template <typename ConnectionClass>
+void async_loop_service(int meeting_id = 0)
 {
-    io_service io_service;
-
-    udp::socket socket(io_service);
-
-    // Accept at 0.0.0.0:1337
-    udp::acceptor acceptor(io_service, udp::endpoint(tcp::v4(), 1337));
-
-    while (true)
+    try
     {
-        acceptor.async_accept(socket);
+        asio::io_service io_service;
 
-        socket.async_read_some();
+        if (meeting_id == 0)
+        {
+            ConnectionClass connection_class(io_service);
+        }
+        else
+        {
+            ConnectionClass connection_class(io_service, meeting_id);
+        }
+
+        io_service.run();
+    }
+    catch (const VideoChatServerException &exc)
+    {
 
     }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    catch (...)
+    {
 
+    }
 }
-
-
 
 
 /*
@@ -412,4 +423,3 @@ void acceptor_loop()
  * Validate that no Mutex is needed for the map.
  *
  */
-
