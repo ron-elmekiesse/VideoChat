@@ -6,6 +6,8 @@
 #include "PacketCreator/PacketCreator.hpp"
 #include "Socket/Socket.hpp"
 
+enum StartupMenuUserChoice : uint32_t { NewMeeting = 1, ExistingMeeting = 2 };
+
 namespace ClientStartup
 {
 	constexpr uint32_t UNKNOWN_MEETING_ID = static_cast<uint32_t>(~0);

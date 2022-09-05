@@ -14,6 +14,14 @@ std::string ClientStartup::take_username()
 	return std::string(username); // To prevent huge chunks of allocated memory staying alive
 }
 
+static uint32_t recv_server_hello_packet(Socket& socket)
+{
+	PacketUtils::PacketHeaders headers{};
+	socket >> headers;
+	PacketUtils::validate_packet(headers, ClientStartup::UNKNOWN_MEETING_ID, PacketUtils::PacketTypes::ServerHello);
+	return headers.user_unique_id;
+}
+
 uint32_t ClientStartup::send_client_hello(Socket& socket, const std::string& username)
 {
 	PacketCreator packet_creator{UNKNOWN_MEETING_ID, username, UNKNOWN_USER_ID};
@@ -21,29 +29,30 @@ uint32_t ClientStartup::send_client_hello(Socket& socket, const std::string& use
 	packet_creator.create(PacketUtils::PacketTypes::ClientHello, {});
 	socket << packet_creator.get_raw_packet();
 
-	PacketUtils::PacketHeaders headers{};
-	socket >> headers;
-	PacketUtils::validate_packet(headers, UNKNOWN_MEETING_ID, PacketUtils::PacketTypes::ServerHello);
-
-	return headers.user_unique_id;
+	return recv_server_hello_packet(socket);
 }
 
-uint32_t send_enter_meeting_packet(Socket& socket,
-                                   const uint32_t uuid,
-                                   const std::string& username,
-                                   const PacketUtils::PacketTypes packet_type,
-                                   const uint32_t meeting_id)
+static uint32_t recv_enter_meeting_packet(Socket& socket)
+{
+	PacketUtils::PacketHeaders headers{};
+	socket >> headers;
+	PacketUtils::validate_packet(headers, PacketUtils::PacketTypes::ServerEnterMeeting);
+	return headers.meeting_id;
+}
+
+static uint32_t send_enter_meeting_packet(Socket& socket,
+                                          const uint32_t uuid,
+                                          const std::string& username,
+                                          const PacketUtils::PacketTypes packet_type,
+                                          const uint32_t meeting_id)
 {
 	PacketCreator packet_creator{meeting_id, username, uuid};
 
 	packet_creator.create(packet_type, {});
 	socket << packet_creator.get_raw_packet();
 
-	PacketUtils::PacketHeaders headers{};
-	socket >> headers;
-	PacketUtils::validate_packet(headers, PacketUtils::PacketTypes::ServerEnterMeeting);
 
-	return headers.meeting_id;
+	return recv_enter_meeting_packet(socket);
 }
 
 uint32_t take_meeting_id()
@@ -59,7 +68,6 @@ uint32_t take_meeting_id()
 	return meeting_id;
 }
 
-enum StartupMenuUserChoice : uint32_t { NewMeeting=1, ExistingMeeting=2 };
 
 uint32_t ClientStartup::client_startup_menu(Socket& socket, const uint32_t uuid, const std::string& username)
 {

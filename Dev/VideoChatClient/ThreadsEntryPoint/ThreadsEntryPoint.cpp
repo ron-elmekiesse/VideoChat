@@ -29,8 +29,11 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 	}
 }
 
-void ThreadsEntryPoint::client_sender(Socket& socket, uint32_t meeting_id, const std::string& name,
-                                      uint32_t user_unique_id, IInput& input_device)
+void ThreadsEntryPoint::client_sender(Socket& socket,
+                                      uint32_t meeting_id,
+                                      const std::string& name,
+                                      uint32_t user_unique_id,
+                                      IInput& input_device)
 {
 	PacketCreator packet_creator{meeting_id, name, user_unique_id};
 
