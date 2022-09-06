@@ -3,7 +3,7 @@
 void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, const IOutput& output_device)
 {
 	PacketUtils::PacketHeaders packet_headers{};
-	
+
 	try
 	{
 		while (true)
@@ -16,7 +16,7 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 
 			socket >> data;
 
-			output_device.show_output(data);
+			output_device.show_output(data, packet_headers);
 		}
 	}
 	catch (const VideoChatClientException& exc)
@@ -29,9 +29,13 @@ void ThreadsEntryPoint::server_listener(Socket& socket, uint32_t meeting_id, con
 	}
 }
 
-void ThreadsEntryPoint::client_sender(Socket& socket, uint32_t meeting_id, const std::string& name, uint32_t user_unique_id, IInput& input_device)
+void ThreadsEntryPoint::client_sender(Socket& socket,
+                                      uint32_t meeting_id,
+                                      const std::string& name,
+                                      uint32_t user_unique_id,
+                                      IInput& input_device)
 {
-	PacketCreator packet_creator{ meeting_id, name, user_unique_id };
+	PacketCreator packet_creator{meeting_id, name, user_unique_id};
 
 	try
 	{

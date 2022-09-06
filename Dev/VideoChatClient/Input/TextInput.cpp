@@ -1,12 +1,17 @@
 #include "TextInput.hpp"
 
 TextInput::TextInput() :
-	IInput(PacketUtils::PacketDataTypes::TextDataType)
+	IInput(PacketUtils::PacketTypes::SendText)
 {}
 
 void TextInput::take_input()
 {
+	std::cout << "Enter your message: ";
+
 	std::string input{};
-	(void)std::getline(std::cin, input);
+	while (!input.length())
+	{
+		(void)std::getline(std::cin, input);
+	}
 	m_data = Buffer(input.begin(), input.end());
 }

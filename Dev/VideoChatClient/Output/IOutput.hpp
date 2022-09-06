@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Common/Common.hpp"
+#include "PacketUtils/PacketUtils.hpp"
 
 class IOutput
 {
@@ -13,5 +14,5 @@ public:
 	IOutput(const IOutput&) = delete;
 	IOutput& operator=(const IOutput&) = delete;
 
-	virtual void show_output(Buffer& out) const = 0;
+	virtual void show_output(Buffer& out, const PacketUtils::PacketHeaders& packet_headers) const = 0;
 };

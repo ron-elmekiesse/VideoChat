@@ -1,12 +1,12 @@
 import socket
 
-from Common.Common import DataTypes, pack_to_server_packet
+from Common.Common import PacketTypes, pack_to_server_packet
 
 MAGIC = b'RTVC'
 meeting_id = 1
 user_unique_id = 1337
 name = b'king ron'
-data_type = DataTypes.TEXT  # Text
+data_type = PacketTypes.TEXT  # Text
 data = b'Hello Client'
 data_size = len(data)
 

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="AutoCloseSocket\AutoCloseSocket.cpp" />
     <ClCompile Include="AutoInitWinSock\AutoInitWinSock.cpp" />
+    <ClCompile Include="ClientStartup\ClientStartup.cpp" />
     <ClCompile Include="Input\ImageInput.cpp" />
     <ClCompile Include="Input\TextInput.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="AutoCloseSocket\AutoCloseSocket.hpp" />
     <ClInclude Include="AutoInitWinSock\AutoInitWinSock.hpp" />
+    <ClInclude Include="ClientStartup\ClientStartup.hpp" />
     <ClInclude Include="Common\Common.hpp" />
     <ClInclude Include="Input\IInput.hpp" />
     <ClInclude Include="Input\ImageInput.hpp" />

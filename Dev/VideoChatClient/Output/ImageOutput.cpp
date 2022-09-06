@@ -2,12 +2,12 @@
 
 #include "VideoChatClientException/VideoChatClientException.hpp"
 
-void ImageOutput::show_output(Buffer& out) const
+void ImageOutput::show_output(Buffer& out, const PacketUtils::PacketHeaders& packet_headers) const
 {
 	try
 	{
 		cv::Mat img = cv::imdecode(out, cv::IMREAD_COLOR);
-		cv::imshow("Image", img);
+		cv::imshow(packet_headers.name, img);
 	}
 	catch (...)
 	{

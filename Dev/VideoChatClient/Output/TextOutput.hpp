@@ -8,5 +8,5 @@
 class TextOutput : public IOutput
 {
 public:
-	void show_output(Buffer& out) const override;
+	void show_output(Buffer& out, const PacketUtils::PacketHeaders& packet_headers) const override;
 };
